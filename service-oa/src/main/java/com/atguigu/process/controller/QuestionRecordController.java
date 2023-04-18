@@ -5,7 +5,11 @@ import com.atguigu.common.result.Result;
 import com.atguigu.process.service.QuestionRecordService;
 import com.atguigu.process.service.QuestionService;
 import com.atguigu.vo.process.ProcessFormVo;
+import com.atguigu.vo.process.ProcessQueryVo;
+import com.atguigu.vo.process.QuestionRecordVo;
 import com.atguigu.vo.process.QuestionVo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +36,18 @@ public class QuestionRecordController {
     public Result startUp(@RequestBody QuestionVo questionVo) {
         questionRecordService.startUp(questionVo);
         return Result.ok();
+    }
+
+    //问卷记录列表
+    @ApiOperation(value = "获取分页列表")
+    @GetMapping("{page}/{limit}")
+    public Result index(@PathVariable Long page,
+                        @PathVariable Long limit,
+                        ProcessQueryVo processQueryVo) {
+        Page<QuestionRecordVo> pageParam = new Page<>(page,limit);
+        IPage<QuestionRecordVo> pageModel =
+                questionRecordService.selectPage(pageParam,processQueryVo);
+        return Result.ok(pageModel);
     }
 }
 

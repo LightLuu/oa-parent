@@ -2,7 +2,11 @@ package com.atguigu.process.service;
 
 
 import com.atguigu.model.process.QuestionRecord;
+import com.atguigu.vo.process.ProcessQueryVo;
+import com.atguigu.vo.process.QuestionRecordVo;
 import com.atguigu.vo.process.QuestionVo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -20,4 +24,12 @@ public interface QuestionRecordService extends IService<QuestionRecord> {
      * @param questionVo
      */
     void startUp(QuestionVo questionVo);
+
+    /**
+     * 问卷记录列表
+     * @param pageParam
+     * @param ProcessQueryVo
+     * @return
+     */
+    IPage<QuestionRecordVo> selectPage(Page<QuestionRecordVo> pageParam, ProcessQueryVo processQueryVo);
 }

@@ -6,8 +6,12 @@ import com.atguigu.common.result.Result;
 import com.atguigu.model.process.ProcessRecord;
 import com.atguigu.model.process.ProcessType;
 import com.atguigu.model.process.Question;
+import com.atguigu.process.service.QuestionRecordService;
 import com.atguigu.process.service.QuestionService;
 import com.atguigu.security.custom.LoginUserInfoHelper;
+import com.atguigu.vo.process.ProcessQueryVo;
+import com.atguigu.vo.process.ProcessVo;
+import com.atguigu.vo.process.QuestionRecordVo;
 import com.atguigu.vo.system.AssginRoleVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -37,12 +41,19 @@ public class QuestionController {
     @Autowired
     private SysRoleService sysRoleService;
 
+    @Autowired
+    private QuestionRecordService questionRecordService;
+
     //查询所有审批分类
     @GetMapping("findAll")
     public Result findAll() {
         List<Question> list = questionService.list();
         return Result.ok(list);
     }
+
+
+
+
 
     //审批类型得分页查询
     @ApiOperation(value = "获取分页列表")

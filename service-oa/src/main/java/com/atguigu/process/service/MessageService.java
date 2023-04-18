@@ -17,4 +17,12 @@ public interface MessageService {
      * @param status
      */
     public void pushProcessedMessage(Long processId, Long userId, Integer status);
+
+    /**
+     * 推动给需要填写问卷的用户
+     * @param processId
+     * @param userId
+     */
+    public void pushPendingQuestion(Long processId, Long userId);
+
 }

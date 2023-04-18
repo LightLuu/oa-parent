@@ -13,6 +13,7 @@ import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,9 @@ public class WechatController {
 
     @Value("${wechat.userInfoUrl}")
     private String userInfoUrl;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl,
@@ -60,7 +64,7 @@ public class WechatController {
     public String userInfo(@RequestParam("code") String code,
                            @RequestParam("state") String returnUrl) throws Exception {
         //获取accessToken
-        try {
+        /*try {
             WxOAuth2AccessToken accessToken = wxMpService.getOAuth2Service().getAccessToken(code);//使用accessToken获取openId
             String openId = accessToken.getOpenId();
             System.out.println("openId: "+openId);
@@ -87,7 +91,47 @@ public class WechatController {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return null;
+        return null;*/
+
+        System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+        //查看redis中是否有这个code对应的accessToken
+        String access = (String) redisTemplate.opsForValue().get(code);
+        WxOAuth2AccessToken accessToken = null;
+        if(access == null){
+            accessToken = wxMpService.getOAuth2Service().getAccessToken(code);//使用accessToken获取openId
+            //保存accessToken
+            redisTemplate.opsForValue().set(code, JSON.toJSONString(accessToken));
+        }else {
+            accessToken = (WxOAuth2AccessToken)JSON.parseObject(access,WxOAuth2AccessToken.class);
+        }
+
+
+        String openId = accessToken.getOpenId();
+        System.out.println("openId: "+openId);
+
+        //获取微信用户信息
+        WxOAuth2UserInfo wxMpUser = wxMpService.getOAuth2Service().getUserInfo(accessToken, null);
+        System.out.println("微信用户信息: "+JSON.toJSONString(wxMpUser));
+
+        //根据openid查询用户表
+        LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SysUser::getOpenId,openId);
+        SysUser sysUser = sysUserService.getOne(wrapper);
+        String token = "";
+        //判断openid是否存在
+        if(sysUser != null) {
+            token = JwtHelper.createToken(sysUser.getId(),sysUser.getUsername());
+        }
+        if(returnUrl.indexOf("?") == -1) {
+            System.out.println();
+            return "redirect:" + returnUrl + "?token=" + token + "&openId=" + openId;
+
+        } else {
+           // return null;
+            System.out.println();
+            return "redirect:" + returnUrl + "&token=" + token + "&openId=" + openId;
+
+        }
     }
 
     @PostMapping("/bindPhone")

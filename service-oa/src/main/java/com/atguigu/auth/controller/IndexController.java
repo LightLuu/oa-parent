@@ -24,6 +24,7 @@ import java.util.Map;
 
 @Api(tags = "后台登录管理")
 @RestController
+//@CrossOrigin //跨域:访问协议 ip地址 端口号一个不一样就会产生跨域
 @RequestMapping("/admin/system/index")
 public class IndexController {
 

@@ -6,6 +6,7 @@ import com.atguigu.auth.service.SysUserRoleService;
 import com.atguigu.model.process.QuestionRole;
 import com.atguigu.model.system.SysRole;
 import com.atguigu.model.system.SysUserRole;
+import com.atguigu.process.service.MessageService;
 import com.atguigu.process.service.QuestionRoleService;
 import com.atguigu.vo.system.AssginRoleVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -28,7 +29,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Autowired
     private QuestionRoleService questionRoleService;
-    
+
+    @Autowired
+    private MessageService messageService;
     //1 查询所有角色 和 当前用户所属角色
     @Override
     public Map<String, Object> findRoleDataByUserId(Long userId) {
@@ -140,6 +143,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             questionRoleService.save(questionRole);
         }
         //TODO 给角色的所有微信用户发布微信消息
+        //查询角色对应的所有微信用户发送填写问卷的信息
+        List<Long> userids = baseMapper.selectList2(roleIdList);
+        for (int i = 0; i < userids.size(); i++) {
+            messageService.pushPendingQuestion(assginRoleVo.getUserId(), userids.get(i));
+        }
+        
 
     }
 //    @Autowired

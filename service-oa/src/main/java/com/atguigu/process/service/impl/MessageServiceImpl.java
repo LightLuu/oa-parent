@@ -5,11 +5,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.atguigu.auth.service.SysUserService;
 import com.atguigu.model.process.Process;
 import com.atguigu.model.process.ProcessTemplate;
+import com.atguigu.model.process.Question;
 import com.atguigu.model.system.SysUser;
 import com.atguigu.model.wechat.Menu;
 import com.atguigu.process.service.MessageService;
 import com.atguigu.process.service.OaProcessService;
 import com.atguigu.process.service.OaProcessTemplateService;
+import com.atguigu.process.service.QuestionService;
 import com.atguigu.security.custom.LoginUserInfoHelper;
 import com.atguigu.vo.wechat.MenuVo;
 import com.atguigu.wechat.service.MenuService;
@@ -26,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +48,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Autowired
     private WxMpService wxMpService;
+
+    @Autowired
+    private QuestionService questionService;
     //推送待审批人员
     @Override
     public void pushPendingMessage(Long processId, Long userId, String taskId) {
@@ -96,7 +102,58 @@ public class MessageServiceImpl implements MessageService {
             throw new RuntimeException(e);
         }
     }
+    //推送给微信用户
+    @Override
+    public void pushPendingQuestion(Long processId, Long userId) {
+        //查询问卷信息
+        Question process = questionService.getById(processId);
+        //根据userid查询要推送人信息
+        SysUser sysUser = sysUserService.getById(userId);
+        //查询审批模板信息
+        //ProcessTemplate processTemplate = processTemplateService.getById(process.getProcessTemplateId());
+        //获取提交审批人的信息
+        //SysUser submitSysUser = sysUserService.getById(process.getUserId());
 
+        //获取要给的消息人的openid
+        String openId = sysUser.getOpenId();
+        if(StringUtils.isEmpty(openId)) {
+            //TODO 为了测试，添加默认值，当前自己的openid
+            openId = "oLlHn6NCK-yGvKPKHVQGG4pKkg7Y";
+        }
+        //设置消息发送信息
+        WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
+                //给谁发送消息，openid值
+                .toUser(openId)
+                //创建模板信息的id值
+                .templateId("sz5Ne6RRaif0fTRxrOasu-CaUj-nqTtPgIvcIEVJbIs")
+                //点击消息，跳转的地址
+                .url("http://afraid2.5gzvip.91tunnel.com/#/form/" + processId)
+                .build();
+
+//        JSONObject jsonObject = JSON.parseObject(process.());
+//        JSONObject formShowData = jsonObject.getJSONObject("formShowData");
+//        StringBuffer content = new StringBuffer();
+//        for (Map.Entry entry : formShowData.entrySet()) {
+//            content.append(entry.getKey()).append("：").append(entry.getValue()).append("\n ");
+//        }
+
+        //设置模板里面参数值
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        templateMessage
+                .addData(new WxMpTemplateData("first",
+                        sysUser.getName()+"你有问卷没有填写"+",请注意查看","#272727"));
+        templateMessage.addData(new WxMpTemplateData("keyword1", process.getName(), "#272727"));
+        templateMessage.addData(new WxMpTemplateData("keyword2",df.format(process.getCreateTime()), "#272727"));
+        //templateMessage.addData(new WxMpTemplateData("keyword3", "", "#272727"));
+
+        //调用方法发送
+        try {
+            String msg = wxMpService.getTemplateMsgService().sendTemplateMsg(templateMessage);
+            System.out.println(msg);
+        } catch (WxErrorException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @SneakyThrows
     @Override

@@ -7,7 +7,11 @@ import com.atguigu.model.system.SysUser;
 import com.atguigu.process.mapper.QuestionRecordMapper;
 import com.atguigu.process.service.QuestionRecordService;
 import com.atguigu.security.custom.LoginUserInfoHelper;
+import com.atguigu.vo.process.ProcessQueryVo;
+import com.atguigu.vo.process.QuestionRecordVo;
 import com.atguigu.vo.process.QuestionVo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,5 +56,16 @@ public class QuestionRecordServiceImpl extends ServiceImpl<QuestionRecordMapper,
         questionRecord.setFormValues(questionVo.getFormValues());
 
         baseMapper.insert(questionRecord);
+    }
+
+    /**
+     * 问卷记录查询
+     * @param pageParam
+     * @return
+     */
+    @Override
+    public IPage<QuestionRecordVo> selectPage(Page<QuestionRecordVo> pageParam, ProcessQueryVo processQueryVo){
+         IPage<QuestionRecordVo> pageModel= baseMapper.selectPage(pageParam, processQueryVo);
+         return pageModel;
     }
 }
