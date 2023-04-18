@@ -12,6 +12,7 @@
         <module name="model" />
         <module name="service-oa" />
         <module name="service-util" />
+        <module name="oss-util" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
       <module name="common" options="" />
       <module name="common-util" options="-parameters" />
       <module name="model" options="-parameters" />
+      <module name="oss-util" options="-parameters" />
       <module name="service-oa" options="-parameters" />
       <module name="service-util" options="-parameters" />
       <module name="spring-security" options="-parameters" />

@@ -47,7 +47,7 @@ public class CodeGet {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("question_role");//"oa_process_type""oa_process_Template "
+        strategy.setInclude("sys_file");//"oa_process_type""oa_process_Template "
 
         //去掉前缀
         //strategy.setTablePrefix("question");
