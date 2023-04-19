@@ -7,9 +7,14 @@ import com.aliyun.oss.model.OSSObjectSummary;
 import com.aliyun.oss.model.ObjectListing;
 import com.atguigu.common.oss.AliyunConfig;
 import com.atguigu.common.oss.FileUploadResult;
+import com.atguigu.model.file.SysFile;
+import com.atguigu.process.service.SysFileService;
+import com.atguigu.security.custom.LoginUserInfoHelper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +39,8 @@ public class FileUploadService {
     @Resource
     private AliyunConfig aliyunConfig;
 
+    @Autowired
+    private SysFileService sysFileService;
     /**
      * 文件上传
      *
@@ -43,6 +50,8 @@ public class FileUploadService {
     public FileUploadResult upload(MultipartFile uploadFile) {
         // 校验图片格式
         boolean isLegal = false;
+        //获取文件名
+        String originalFilename = uploadFile.getOriginalFilename();
         for (String type : IMAGE_TYPE) {
             if (StringUtils.endsWithIgnoreCase(uploadFile.getOriginalFilename(), type)) {
                 isLegal = true;
@@ -70,11 +79,29 @@ public class FileUploadService {
         fileUploadResult.setStatus("done");
         fileUploadResult.setResponse("success");
         // 文件路径需要保存到数据库
+        SysFile sysFile = new SysFile();
+        //用户自定义文件名//TODO
+        sysFile.setFilename(originalFilename);
+        //设置提交的用户id和用户名
+        Long userId = LoginUserInfoHelper.getUserId();
+        String username = LoginUserInfoHelper.getUsername();
+        sysFile.setUserId(userId);
+        sysFile.setUsername(username);
+        //设置文件在oss的key
+        sysFile.setOsskeys(filePath);
+        //设置文件id 用当前时间作为file uid
+        Long fileId = (Long) System.currentTimeMillis();
+        sysFile.setFileId(fileId);
+        //设置文件描述
+        //TODO
+        sysFile.setDescription("test");
+        //存储到数据库中
+        sysFileService.save(sysFile);
+        //返回的结果对象
         fileUploadResult.setName(this.aliyunConfig.getUrlPrefix() + filePath);
-        fileUploadResult.setUid(String.valueOf(System.currentTimeMillis()));
+        fileUploadResult.setUid(String.valueOf(fileId));
         return fileUploadResult;
     }
-
     /**
      * 生成路径以及文件名
      *
@@ -116,6 +143,11 @@ public class FileUploadService {
         fileUploadResult.setName(objectName);
         fileUploadResult.setStatus("removed");
         fileUploadResult.setResponse("success");
+        //数据库中保证已经删除
+        System.out.println("00000000000000000000000000");
+        LambdaQueryWrapper<SysFile> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SysFile::getOsskeys,objectName);
+        sysFileService.remove(wrapper);
         return fileUploadResult;
     }
 
@@ -146,4 +178,26 @@ public class FileUploadService {
         }
     }
 
+    /**
+     * 更新文件名，和描述
+     * @param fileid
+     * @param filename
+     * @param des
+     * @return
+     */
+    public FileUploadResult updata(String fileid, String filename, String des,String type) {
+        LambdaQueryWrapper<SysFile> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SysFile::getFileId,Long.parseLong(fileid));
+        SysFile sysFile = sysFileService.getOne(wrapper);
+        sysFile.setFilename(filename);
+        sysFile.setDescription(des);
+        sysFile.setTypes(type);
+        sysFileService.updateById(sysFile);
+        FileUploadResult result = new FileUploadResult();
+        result.setResponse("success");
+        result.setName(filename);
+        result.setResponse("ok");
+        result.setCode(200);
+        return result;
+    }
 }

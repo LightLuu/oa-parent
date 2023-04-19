@@ -65,5 +65,13 @@ public class SysFile implements Serializable {
      */
     private String description;
 
+    /**
+     * 文件key
+     */
+    private String osskeys;
 
+    /**
+     * 文件类型
+     */
+    private String types;
 }

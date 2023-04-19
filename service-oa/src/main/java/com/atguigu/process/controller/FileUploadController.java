@@ -2,17 +2,17 @@ package com.atguigu.process.controller;
 
 import com.aliyun.oss.model.OSSObjectSummary;
 import com.atguigu.common.oss.FileUploadResult;
+import com.atguigu.model.file.SysFile;
 import com.atguigu.process.service.impl.FileUploadService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 巅峰小词典
@@ -20,16 +20,27 @@ import java.util.List;
  * @date 2021/5/20
  * @project springboot_oss
  */
-@Controller
+@RestController
+@RequestMapping(value = "/file")
 public class FileUploadController {
 
     @Resource
     private FileUploadService fileUploadService;
 
-    @RequestMapping("file/upload")
-    @ResponseBody
+    @PostMapping("/upload")
     public FileUploadResult upload(@RequestParam("file") MultipartFile uploadFile) throws Exception {
+        System.out.println("11111111111111111111111111111111111111111111111111111");
+        //return this.fileUploadService.upload(uploadFile);
         return this.fileUploadService.upload(uploadFile);
+    }
+
+    //@RequestMapping("file/updata")
+   // @GetMapping("{fileid}/{filename}/{des}")
+    //@ResponseBody
+    @GetMapping("/updata/{fileId}/{filename}/{des}/{type}")
+    public FileUploadResult updata(@PathVariable String fileId,@PathVariable String filename,@PathVariable  String des,@PathVariable String type){
+        System.out.println(1111);
+        return this.fileUploadService.updata(fileId,filename,des,type);
     }
 
     @RequestMapping("file/delete")

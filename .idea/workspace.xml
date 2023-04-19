@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f1aa1b7-56d9-46b0-b59b-d69f2c87ba07" name="Changes" comment="实现了获得oss key接口">
-      <change afterPath="$PROJECT_DIR$/common/common-util/src/main/java/com/atguigu/common/oss/FileUploadResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/AliyunConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/resources/application-oss.properties" afterDir="false" />
+    <list default="true" id="5f1aa1b7-56d9-46b0-b59b-d69f2c87ba07" name="Changes" comment="实现了图片文件上传的接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/StsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/StsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/target/classes/com/atguigu/common/oss/StsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/target/classes/com/atguigu/common/oss/StsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common-util/src/main/java/com/atguigu/common/oss/FileUploadResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/common-util/src/main/java/com/atguigu/common/oss/FileUploadResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/com/atguigu/model/file/SysFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/atguigu/model/file/SysFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/SysFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/SysFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,17 +137,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServiceAuthApplication#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/ServiceAuthApplication.http" runType="运行单个请求">
       <method v="2" />
     </configuration>
@@ -231,7 +213,9 @@
       <workItem from="1681370769234" duration="737000" />
       <workItem from="1681371530346" duration="62963000" />
       <workItem from="1681820036331" duration="1227000" />
-      <workItem from="1681823572114" duration="7075000" />
+      <workItem from="1681823572114" duration="17723000" />
+      <workItem from="1681893122637" duration="864000" />
+      <workItem from="1681894013005" duration="12045000" />
     </task>
     <task id="LOCAL-00001" summary="Changes 下面要做文件管理功能">
       <created>1681813462016</created>
@@ -254,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681826537096</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="实现了图片文件上传的接口">
+      <created>1681866996512</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681866996512</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +266,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes 下面要做文件管理功能" />
     <MESSAGE value="实现了获得oss key接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了获得oss key接口" />
+    <MESSAGE value="实现了图片文件上传的接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了图片文件上传的接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

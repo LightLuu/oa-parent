@@ -11,5 +11,7 @@ public class FileUploadResult {
     private String status;
     // 服务端响应内容，如：'{"status": "success"}'
     private String response;
+    //状态码
+    private Integer code;
 
 }
