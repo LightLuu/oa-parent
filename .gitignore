@@ -4,3 +4,4 @@
 /common/spring-security/target/
 /model/target/
 /service-oa/target/
+/service-oa/src/main/resources/application-oss.properties

@@ -51,10 +51,6 @@ public class QuestionController {
         return Result.ok(list);
     }
 
-
-
-
-
     //审批类型得分页查询
     @ApiOperation(value = "获取分页列表")
     @GetMapping("{page}/{limit}")

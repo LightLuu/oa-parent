@@ -48,9 +48,9 @@ public class StsService {
             final AssumeRoleResponse response = client.getAcsResponse(request);
             Map<String,String> map = new HashMap<>();
             //放入map中返回
-            map.put("Access Key Id", response.getCredentials().getAccessKeyId());
-            map.put("Access Key Secret", response.getCredentials().getAccessKeySecret());
-            map.put("Security Token",response.getCredentials().getSecurityToken());
+            map.put("accessKeyId", response.getCredentials().getAccessKeyId());
+            map.put("accessKeySecret", response.getCredentials().getAccessKeySecret());
+            map.put("securityToken",response.getCredentials().getSecurityToken());
             map.put("RequestId",response.getRequestId());
             System.out.println("Expiration: " + response.getCredentials().getExpiration());
             System.out.println("Access Key Id: " + response.getCredentials().getAccessKeyId());
