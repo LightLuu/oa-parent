@@ -7,6 +7,7 @@ import com.aliyun.oss.model.OSSObjectSummary;
 import com.aliyun.oss.model.ObjectListing;
 import com.atguigu.common.oss.AliyunConfig;
 import com.atguigu.common.oss.FileUploadResult;
+import com.atguigu.common.result.Result;
 import com.atguigu.model.file.SysFile;
 import com.atguigu.process.service.SysFileService;
 import com.atguigu.security.custom.LoginUserInfoHelper;
@@ -136,19 +137,15 @@ public class FileUploadService {
      * @param objectName
      * @return
      */
-    public FileUploadResult delete(String objectName) {
+    public Result delete(String objectName) {
         // 根据BucketName,objectName删除文件
         ossClient.deleteObject(aliyunConfig.getBucketName(), objectName);
-        FileUploadResult fileUploadResult = new FileUploadResult();
-        fileUploadResult.setName(objectName);
-        fileUploadResult.setStatus("removed");
-        fileUploadResult.setResponse("success");
         //数据库中保证已经删除
         System.out.println("00000000000000000000000000");
         LambdaQueryWrapper<SysFile> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SysFile::getOsskeys,objectName);
         sysFileService.remove(wrapper);
-        return fileUploadResult;
+        return Result.ok();
     }
 
     /**

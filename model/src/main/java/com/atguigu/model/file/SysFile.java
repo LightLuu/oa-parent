@@ -1,12 +1,15 @@
 package com.atguigu.model.file;
 
+import com.atguigu.model.system.SysMenu;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -74,4 +77,7 @@ public class SysFile implements Serializable {
      * 文件类型
      */
     private String types;
+    // 下级列表
+    @TableField(exist = false)
+    private List<SysFile> children;
 }

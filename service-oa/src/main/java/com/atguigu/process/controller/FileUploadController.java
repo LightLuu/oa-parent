@@ -2,6 +2,7 @@ package com.atguigu.process.controller;
 
 import com.aliyun.oss.model.OSSObjectSummary;
 import com.atguigu.common.oss.FileUploadResult;
+import com.atguigu.common.result.Result;
 import com.atguigu.model.file.SysFile;
 import com.atguigu.process.service.impl.FileUploadService;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,7 @@ public class FileUploadController {
 
     @RequestMapping("file/delete")
     @ResponseBody
-    public FileUploadResult delete(@RequestParam("fileName") String objectName) throws Exception {
+    public Result delete(@RequestParam("fileName") String objectName) throws Exception {
         return this.fileUploadService.delete(objectName);
     }
 

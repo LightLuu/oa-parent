@@ -1,5 +1,6 @@
 package com.atguigu.auth.utils;
 
+import com.atguigu.model.file.SysFile;
 import com.atguigu.model.system.SysMenu;
 
 import java.util.ArrayList;
@@ -34,5 +35,19 @@ public class MenuHelper {
             }
         }
         return sysMenu;
+    }
+
+    public static SysFile getChildren(SysFile sysFile,List<SysFile> sysFileList){
+        sysFile.setChildren(new ArrayList<SysFile>());
+        //遍历所有文件列表，判断type是否相等
+        for (SysFile it:sysFileList) {
+            if(sysFile.getFilename().equals(it.getTypes())){
+                if(it.getChildren() == null){
+                    it.setChildren(new ArrayList<>());
+                }
+                sysFile.getChildren().add(it);
+            }
+        }
+        return sysFile;
     }
 }
