@@ -38,6 +38,13 @@ public class FileUploadController {
         return this.fileUploadService.upload(uploadFile);
     }
 
+    @PostMapping("/ocrdemo")
+    public Result ocrdemo(@RequestParam("file") MultipartFile uploadFile) throws Exception {
+        //System.out.println("11111111111111111111111111111111111111111111111111111");
+        //return this.fileUploadService.upload(uploadFile);
+        return this.fileUploadService.ocrDemo(uploadFile);
+    }
+
     //@RequestMapping("file/updata")
    // @GetMapping("{fileid}/{filename}/{des}")
     //@ResponseBody

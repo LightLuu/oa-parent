@@ -1,10 +1,12 @@
 package com.atguigu.process.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.aliyun.ocr_api20210707.models.RecognizeBasicRequest;
+import com.aliyun.ocr_api20210707.models.RecognizeBasicResponse;
 import com.aliyun.oss.OSS;
-import com.aliyun.oss.model.ListObjectsRequest;
-import com.aliyun.oss.model.OSSObject;
-import com.aliyun.oss.model.OSSObjectSummary;
-import com.aliyun.oss.model.ObjectListing;
+import com.aliyun.oss.model.*;
+import com.aliyun.teautil.models.RuntimeOptions;
 import com.atguigu.common.oss.AliyunConfig;
 import com.atguigu.common.oss.FileUploadResult;
 import com.atguigu.common.result.Result;
@@ -12,33 +14,34 @@ import com.atguigu.model.file.SysFile;
 import com.atguigu.process.service.SysFileService;
 import com.atguigu.security.custom.LoginUserInfoHelper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.google.common.collect.Lists;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.*;
-import java.util.List;
+import java.net.URL;
+import java.util.*;
 
-/**
- * @author 巅峰小词典
- * @description 使用ossClient操作阿里云OSS，进行上传、下载、删除、查看所有文件等操作，同时可以将图片的url进行入库操作。
- * @date 2021/5/20
- * @project springboot_oss
- */
+
 @Service
 public class FileUploadService {
 
     // 允许上传的格式
-    private static final String[] IMAGE_TYPE = new String[]{".bmp", ".jpg", ".jpeg", ".gif", ".png"};
-
+    private static final Set<String> IMAGE_TYPE_SET = new HashSet<>(Arrays.asList(".bmp", ".jpg", ".jpeg", ".gif", ".png"));
+    
     @Resource
     private OSS ossClient;
     @Resource
     private AliyunConfig aliyunConfig;
+    @Resource
+    private com.aliyun.ocr_api20210707.Client ocrClient;
 
     @Autowired
     private SysFileService sysFileService;
@@ -53,14 +56,9 @@ public class FileUploadService {
         boolean isLegal = true;
         //获取文件名
         String originalFilename = uploadFile.getOriginalFilename();
-//        for (String type : IMAGE_TYPE) {
-//            if (StringUtils.endsWithIgnoreCase(uploadFile.getOriginalFilename(), type)) {
-//                isLegal = true;
-//                break;
-//            }
-//        }
         // 封装Result对象，并且将文件的byte数组放置到result对象中
         FileUploadResult fileUploadResult = new FileUploadResult();
+
         if (!isLegal) {
             fileUploadResult.setStatus("error");
             return fileUploadResult;
@@ -81,7 +79,7 @@ public class FileUploadService {
         fileUploadResult.setResponse("success");
         // 文件路径需要保存到数据库
         SysFile sysFile = new SysFile();
-        //用户自定义文件名//TODO
+        //用户自定义文件名
         sysFile.setFilename(originalFilename);
         //设置提交的用户id和用户名
         Long userId = LoginUserInfoHelper.getUserId();
@@ -94,7 +92,6 @@ public class FileUploadService {
         Long fileId = (Long) System.currentTimeMillis();
         sysFile.setFileId(fileId);
         //设置文件描述
-        //TODO
         sysFile.setDescription("test");
         //存储到数据库中
         sysFileService.save(sysFile);
@@ -103,6 +100,58 @@ public class FileUploadService {
         System.out.println(fileId);
         fileUploadResult.setUid(String.valueOf(fileId));
         return fileUploadResult;
+    }
+
+    /**
+     * 文件识别
+     * @param uploadFile
+     * @return
+     */
+    public Result ocrDemo(MultipartFile uploadFile) {
+        // 校验图片格式
+        boolean isLegal = true;
+        //获取文件名
+        String originalFilename = uploadFile.getOriginalFilename();
+        // 封装Result对象，并且将文件的byte数组放置到result对象中
+        FileUploadResult fileUploadResult = new FileUploadResult();
+        String extension = FilenameUtils.getExtension(originalFilename);
+        if (IMAGE_TYPE_SET.contains(extension)) {
+            isLegal = false;
+        }
+        if (!isLegal) {
+            fileUploadResult.setStatus("error");
+            return Result.fail("文件格式错误");
+        }
+        // 文件新路径
+        String fileName = uploadFile.getOriginalFilename();
+        String filePath = getFilePath(fileName);
+        // 上传到阿里云
+        JSONObject jsonObject= null;
+        try {
+            PutObjectResult putObjectResult = ossClient.putObject(aliyunConfig.getBucketName(), filePath, new ByteArrayInputStream(uploadFile.getBytes()));
+            Date expiration = new Date(new Date().getTime() + 1800 * 1000);
+            // 生成以GET方法访问的签名URL，访客可以直接通过浏览器访问相关内容。
+            URL url = ossClient.generatePresignedUrl(aliyunConfig.getBucketName(), filePath, expiration);
+            RecognizeBasicRequest recognizeBasicRequest = new RecognizeBasicRequest().setUrl(url.toString());
+            try {
+                // 复制代码运行请自行打印 API 的返回值
+                RecognizeBasicResponse recognizeBasicResponse = ocrClient.recognizeBasicWithOptions(recognizeBasicRequest, new RuntimeOptions());
+                System.out.println(recognizeBasicResponse.getBody().getData());
+                //code
+                if(200 == recognizeBasicResponse.getStatusCode()){
+                     jsonObject = JSON.parseObject(recognizeBasicResponse.getBody().getData());
+                }
+            } catch (Exception error) {
+                // 如有需要，请打印 error
+                error.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 上传失败
+            fileUploadResult.setStatus("error");
+            return Result.fail();
+        }
+        return Result.ok(jsonObject);
     }
     /**
      * 生成路径以及文件名
