@@ -10,6 +10,7 @@ import com.atguigu.vo.process.QuestionRecordVo;
 import com.atguigu.vo.process.QuestionVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
  * @author afraid
  * @since 2023-04-13
  */
+@Api(tags = "问卷记录管理")
 @RestController
 @CrossOrigin //跨域:访问协议 ip地址 端口号一个不一样就会产生跨域
 @RequestMapping("/process/question-record")
@@ -31,7 +33,7 @@ public class QuestionRecordController {
 
     @Autowired
     private QuestionRecordService questionRecordService;
-    @ApiOperation(value = "启动流程")
+    @ApiOperation(value = "提交表单")
     @PostMapping("/startUp")
     public Result startUp(@RequestBody QuestionVo questionVo) {
         questionRecordService.startUp(questionVo);

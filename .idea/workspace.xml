@@ -5,22 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f1aa1b7-56d9-46b0-b59b-d69f2c87ba07" name="Changes" comment="实现了图片文件上传的接口">
-      <change afterPath="$PROJECT_DIR$/common/common-util/src/main/java/com/atguigu/common/oss/FileUploadResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/AliyunConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/oss-util/target/classes/com/atguigu/common/oss/AliyunConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/StsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/StsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/target/classes/com/atguigu/common/oss/StsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/target/classes/com/atguigu/common/oss/StsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/com/atguigu/model/file/SysFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/atguigu/model/file/SysFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/auth/utils/MenuHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/auth/utils/MenuHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/service-util/src/main/java/com/atguigu/common/config/knife4j/Knife4jConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/service-util/src/main/java/com/atguigu/common/config/knife4j/Knife4jConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTypeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/QuestionRoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/SysFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/SysFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/SysFileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/SysFileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/SysFileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/SysFileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/QuestionRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/QuestionRecordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/OaProcessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/OaProcessServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/test/java/com/atguigu/auth/activiti/ProcessTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/test/java/com/atguigu/auth/activiti/ProcessTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,25 +120,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JwtHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.common.jwt.JwtHelper" />
-      <module name="common-util" />
+    <configuration name="Knife4jConfig" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.common.config.knife4j.Knife4jConfig" />
+      <module name="service-util" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.atguigu.common.jwt.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StsService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.common.oss.StsService" />
-      <module name="oss-util" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.common.oss.*" />
+          <option name="PATTERN" value="com.atguigu.common.config.knife4j.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -161,8 +146,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceAuthApplication#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/ServiceAuthApplication.http" runType="运行单个请求">
-      <method v="2" />
+    <configuration name="ProcessTestDemo1.deployProcess02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service-oa" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.auth.activiti.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.atguigu.auth.activiti" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.auth.activiti.ProcessTestDemo1" />
+      <option name="METHOD_NAME" value="deployProcess02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProcessTest.deployProcessByZip" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service-oa" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.auth.activiti.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.atguigu.auth.activiti" />
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.auth.activiti.ProcessTest" />
+      <option name="METHOD_NAME" value="deployProcessByZip" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="ServiceAuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="service-oa" />
@@ -178,19 +192,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP 请求.ServiceAuthApplication#1" />
       <item itemvalue="Spring Boot.ServiceAuthApplication" />
-      <item itemvalue="应用程序.JwtHelper" />
       <item itemvalue="应用程序.CodeGet" />
-      <item itemvalue="应用程序.StsService" />
+      <item itemvalue="应用程序.Knife4jConfig" />
+      <item itemvalue="JUnit.ProcessTestDemo1.deployProcess02" />
+      <item itemvalue="JUnit.ProcessTest.deployProcessByZip" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.ServiceAuthApplication" />
+        <item itemvalue="JUnit.ProcessTest.deployProcessByZip" />
+        <item itemvalue="JUnit.ProcessTestDemo1.deployProcess02" />
+        <item itemvalue="应用程序.Knife4jConfig" />
         <item itemvalue="应用程序.CodeGet" />
-        <item itemvalue="应用程序.StsService" />
-        <item itemvalue="HTTP 请求.ServiceAuthApplication#1" />
-        <item itemvalue="应用程序.JwtHelper" />
       </list>
     </recent_temporary>
   </component>
@@ -240,6 +254,7 @@
       <workItem from="1681823572114" duration="17723000" />
       <workItem from="1681893122637" duration="864000" />
       <workItem from="1681894013005" duration="35081000" />
+      <workItem from="1682000454952" duration="50932000" />
     </task>
     <task id="LOCAL-00001" summary="Changes 下面要做文件管理功能">
       <created>1681813462016</created>
@@ -283,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681999171580</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="完成了文件管理功能--唯一bug就是oss文件名问题并且忽略了配置文件，避免出现密钥泄露问题">
+      <created>1682000786089</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682000786089</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +329,8 @@
     <MESSAGE value="实现了图片文件上传的接口" />
     <MESSAGE value="实现了图片文件上传并修改文件名，文件描述，文件类型" />
     <MESSAGE value="完成了文件管理功能--唯一bug就是oss文件名问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了文件管理功能--唯一bug就是oss文件名问题" />
+    <MESSAGE value="完成了文件管理功能--唯一bug就是oss文件名问题并且忽略了配置文件，避免出现密钥泄露问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成了文件管理功能--唯一bug就是oss文件名问题并且忽略了配置文件，避免出现密钥泄露问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -328,9 +351,39 @@
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/api/ProcessController.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="86" />
+          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/OaProcessServiceImpl.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTemplateController.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTemplateController.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/OaProcessTemplateServiceImpl.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTemplateController.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTemplateController.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/OaProcessTemplateController.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="113" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

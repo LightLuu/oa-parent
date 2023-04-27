@@ -16,6 +16,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * knife4j配置信息
@@ -44,7 +46,8 @@ public class Knife4jConfig {
                 .select()
                 //只显示admin路径下的页面
                 .apis(RequestHandlerSelectors.basePackage("com.atguigu"))
-                .paths(PathSelectors.regex("/admin/.*"))
+                //.paths(PathSelectors.regex("/admin/.*"))
+                .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars);
         return adminApi;
@@ -59,6 +62,5 @@ public class Knife4jConfig {
                 .contact(new Contact("atguigu", "http://atguigu.com", "atguigu@qq.com"))
                 .build();
     }
-
 
 }

@@ -100,6 +100,7 @@ public class FileUploadService {
         sysFileService.save(sysFile);
         //返回的结果对象
         fileUploadResult.setName(this.aliyunConfig.getUrlPrefix() + filePath);
+        System.out.println(fileId);
         fileUploadResult.setUid(String.valueOf(fileId));
         return fileUploadResult;
     }

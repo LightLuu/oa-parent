@@ -28,7 +28,7 @@ public interface QuestionRecordService extends IService<QuestionRecord> {
     /**
      * 问卷记录列表
      * @param pageParam
-     * @param ProcessQueryVo
+     * @param processQueryVo
      * @return
      */
     IPage<QuestionRecordVo> selectPage(Page<QuestionRecordVo> pageParam, ProcessQueryVo processQueryVo);

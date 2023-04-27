@@ -147,13 +147,13 @@ public class ProcessTest {
                 .getClass()
                 .getClassLoader()
                 .getResourceAsStream(
-                        "processes/qingjia.bpmn20.zip");
+                        "processes/peiyangmubiao.zip");
         ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 
         // 流程部署
         Deployment deployment = repositoryService.createDeployment()
                 .addZipInputStream(zipInputStream)
-                .name("请假申请流程")
+                .name("培养目标")
                 .deploy();
         System.out.println("流程部署id：" + deployment.getId());
         System.out.println("流程部署名称：" + deployment.getName());

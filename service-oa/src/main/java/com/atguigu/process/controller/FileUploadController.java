@@ -5,6 +5,7 @@ import com.atguigu.common.oss.FileUploadResult;
 import com.atguigu.common.result.Result;
 import com.atguigu.model.file.SysFile;
 import com.atguigu.process.service.impl.FileUploadService;
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,8 +22,10 @@ import java.util.Map;
  * @date 2021/5/20
  * @project springboot_oss
  */
+@Api(tags = "文件上传")
 @RestController
 @RequestMapping(value = "/file")
+@CrossOrigin //跨域:访问协议 ip地址 端口号一个不一样就会产生跨域
 public class FileUploadController {
 
     @Resource

@@ -16,6 +16,7 @@ import com.atguigu.vo.system.AssginRoleVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,7 @@ import java.util.Map;
  * @author afraid
  * @since 2023-04-12
  */
+@Api(tags = "问卷管理")
 @RestController
 @RequestMapping("/process/question")
 @CrossOrigin //跨域:访问协议 ip地址 端口号一个不一样就会产生跨域
@@ -45,6 +47,7 @@ public class QuestionController {
     private QuestionRecordService questionRecordService;
 
     //查询所有审批分类
+    @ApiOperation(value = "查询所有")
     @GetMapping("findAll")
     public Result findAll() {
         List<Question> list = questionService.list();

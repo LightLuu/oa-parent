@@ -10,6 +10,7 @@ import com.atguigu.security.custom.LoginUserInfoHelper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ import java.util.Map;
  * @author afraid
  * @since 2023-04-18
  */
+@Api(tags = "文件管理")
 @RestController
 @RequestMapping("/process/sys-file")
 @CrossOrigin //跨域:访问协议 ip地址 端口号一个不一样就会产生跨域

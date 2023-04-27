@@ -29,6 +29,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value = "/admin/process/processTemplate")
+@CrossOrigin //跨域:访问协议 ip地址 端口号一个不一样就会产生跨域
 public class OaProcessTemplateController {
 
     @Autowired

@@ -2,6 +2,7 @@ package com.atguigu.process.service.impl;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.atguigu.auth.mapper.SysUserMapper;
 import com.atguigu.auth.service.SysUserService;
 import com.atguigu.model.process.Process;
 import com.atguigu.model.process.ProcessRecord;
@@ -77,6 +78,9 @@ public class OaProcessServiceImpl extends ServiceImpl<OaProcessMapper, Process> 
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private SysUserMapper sysUserMapper;
+
     //审批管理列表
     @Override
     public IPage<ProcessVo> selectPage(Page<ProcessVo> pageParam, ProcessQueryVo processQueryVo) {
@@ -93,7 +97,7 @@ public class OaProcessServiceImpl extends ServiceImpl<OaProcessMapper, Process> 
         //部署
         Deployment deployment = repositoryService.createDeployment()
                 .addZipInputStream(zipInputStream)
-                .name("请假申请流程")
+                .name("培养目标")
                 .deploy();
         System.out.println(deployment.getId());
         System.out.println(deployment.getName());
@@ -148,7 +152,35 @@ public class OaProcessServiceImpl extends ServiceImpl<OaProcessMapper, Process> 
         }
         Map<String,Object> variables = new HashMap<>();
         variables.put("data",map);
+        if(processDefinitionKey.equals("jiaban")){
+            //获得院长和学院的名字
+            LambdaQueryWrapper<SysUser> wrapper= new LambdaQueryWrapper();
+            wrapper.eq(SysUser::getName,"学办");
+            SysUser sysUser1 = sysUserMapper.selectOne(wrapper);
+            variables.put("assignee1",sysUser1.getUsername());
+
+            LambdaQueryWrapper<SysUser> wrapper2= new LambdaQueryWrapper();
+            wrapper2.eq(SysUser::getName,"院长");
+            SysUser sysUser2 = sysUserMapper.selectOne(wrapper2);
+            variables.put("assignee2",sysUser2.getUsername());
+        }
+
         //启动流程实例
+        //这里如果存在.就把点后面的东西去掉
+        processDefinitionKey = processDefinitionKey.split("\\.")[0];
+        System.out.println(processDefinitionKey);
+        if(processDefinitionKey.equals("peiyangmubiao") || processDefinitionKey.equals("biyeyaoqiu")|| processDefinitionKey.equals("zhuangyebuchong")||processDefinitionKey.equals("kechengtixi")) {
+            //获得院长和学院的名字
+            LambdaQueryWrapper<SysUser> wrapper= new LambdaQueryWrapper();
+            wrapper.eq(SysUser::getName,"学院");
+            SysUser sysUser1 = sysUserMapper.selectOne(wrapper);
+            variables.put("assignee1",sysUser1.getUsername());
+
+            LambdaQueryWrapper<SysUser> wrapper2= new LambdaQueryWrapper();
+            wrapper2.eq(SysUser::getName,"院长");
+            SysUser sysUser2 = sysUserMapper.selectOne(wrapper2);
+            variables.put("assignee2",sysUser2.getUsername());
+        }
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(processDefinitionKey,
                 businessKey, variables);
 
@@ -254,7 +286,7 @@ public class OaProcessServiceImpl extends ServiceImpl<OaProcessMapper, Process> 
         for(Task task : taskList) {
             //判断任务审批人是否是当前用户
             String username = LoginUserInfoHelper.getUsername();
-            if(task.getAssignee().equals(username)) {
+            if(task.getAssignee()!=null && task.getAssignee().equals(username)) {
                 isApprove = true;
             }
         }
