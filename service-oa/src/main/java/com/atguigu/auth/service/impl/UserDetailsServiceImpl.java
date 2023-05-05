@@ -44,6 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         //根据userid查询用户操作权限数据
         List<String> userPermsList = sysMenuService.findUserPermsByUserId(sysUser.getId());
+
         //创建list集合，封装最终权限数据
         List<SimpleGrantedAuthority> authList = new ArrayList<>();
         //查询list集合遍历

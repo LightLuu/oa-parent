@@ -78,6 +78,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         //1 菜单数据查询出来，封装微信要求菜单格式
         List<MenuVo> menuVoList = this.findMenuInfo();
         //菜单
+
         JSONArray buttonList = new JSONArray();
         for(MenuVo oneMenuVo : menuVoList) {
             JSONObject one = new JSONObject();

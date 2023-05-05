@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f1aa1b7-56d9-46b0-b59b-d69f2c87ba07" name="Changes" comment="实现了图片文件上传的接口">
-      <change afterPath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/entity/OcrResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/entity/PrismWordsInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/AliyunConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/src/main/java/com/atguigu/common/oss/AliyunConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/oss-util/target/classes/com/atguigu/common/oss/AliyunConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/oss-util/target/classes/com/atguigu/common/oss/AliyunConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/controller/FileUploadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/process/service/impl/FileUploadService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/resources/application-oss.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/resources/application-oss.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/auth/service/impl/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/auth/service/impl/UserDetailsServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +75,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReactorSettings">
@@ -193,19 +185,17 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Knife4jConfig" />
+      <item itemvalue="Application.Sample" />
       <item itemvalue="JUnit.ProcessTestDemo1.deployProcess02" />
       <item itemvalue="JUnit.ProcessTest.deployProcessByZip" />
       <item itemvalue="Spring Boot.ServiceAuthApplication" />
-      <item itemvalue="应用程序.Knife4jConfig" />
-      <item itemvalue="应用程序.Sample" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.ServiceAuthApplication" />
-        <item itemvalue="应用程序.Sample" />
         <item itemvalue="JUnit.ProcessTest.deployProcessByZip" />
         <item itemvalue="JUnit.ProcessTestDemo1.deployProcess02" />
-        <item itemvalue="应用程序.Knife4jConfig" />
       </list>
     </recent_temporary>
   </component>
@@ -256,7 +246,9 @@
       <workItem from="1681893122637" duration="864000" />
       <workItem from="1681894013005" duration="35081000" />
       <workItem from="1682000454952" duration="55133000" />
-      <workItem from="1682564259027" duration="13169000" />
+      <workItem from="1682564259027" duration="13604000" />
+      <workItem from="1682604797800" duration="3112000" />
+      <workItem from="1683125395023" duration="5728000" />
     </task>
     <task id="LOCAL-00001" summary="Changes 下面要做文件管理功能">
       <created>1681813462016</created>
@@ -314,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682556219792</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="实现ocr后端实现">
+      <created>1682604687350</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682604687350</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,7 +324,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -340,7 +345,8 @@
     <MESSAGE value="完成了文件管理功能--唯一bug就是oss文件名问题" />
     <MESSAGE value="完成了文件管理功能--唯一bug就是oss文件名问题并且忽略了配置文件，避免出现密钥泄露问题" />
     <MESSAGE value="解决了跨域问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="解决了跨域问题" />
+    <MESSAGE value="实现ocr后端实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现ocr后端实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
