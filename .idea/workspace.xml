@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5f1aa1b7-56d9-46b0-b59b-d69f2c87ba07" name="Changes" comment="实现了图片文件上传的接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/auth/service/impl/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/java/com/atguigu/auth/service/impl/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-oa/src/main/resources/application-oss.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service-oa/src/main/resources/application-oss.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +248,7 @@
       <workItem from="1682000454952" duration="55133000" />
       <workItem from="1682564259027" duration="13604000" />
       <workItem from="1682604797800" duration="3112000" />
-      <workItem from="1683125395023" duration="5728000" />
+      <workItem from="1683125395023" duration="8670000" />
     </task>
     <task id="LOCAL-00001" summary="Changes 下面要做文件管理功能">
       <created>1681813462016</created>
@@ -313,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682604687350</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="实现了图片文件上传的接口">
+      <created>1683295253905</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1683295253906</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,13 +347,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes 下面要做文件管理功能" />
     <MESSAGE value="实现了获得oss key接口" />
-    <MESSAGE value="实现了图片文件上传的接口" />
     <MESSAGE value="实现了图片文件上传并修改文件名，文件描述，文件类型" />
     <MESSAGE value="完成了文件管理功能--唯一bug就是oss文件名问题" />
     <MESSAGE value="完成了文件管理功能--唯一bug就是oss文件名问题并且忽略了配置文件，避免出现密钥泄露问题" />
     <MESSAGE value="解决了跨域问题" />
     <MESSAGE value="实现ocr后端实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现ocr后端实现" />
+    <MESSAGE value="实现了图片文件上传的接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了图片文件上传的接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
