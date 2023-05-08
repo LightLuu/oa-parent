@@ -22,6 +22,8 @@ import org.springframework.context.annotation.Scope;
 @Data
 public class AliyunConfig {
 
+
+
     private String endpoint;
     private String accessKeyId;
     private String accessKeySecret;
