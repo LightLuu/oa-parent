@@ -2,6 +2,7 @@ package com.atguigu.wechat.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.atguigu.common.oss.WechatConfig;
 import com.atguigu.model.wechat.Menu;
 import com.atguigu.vo.wechat.MenuVo;
 import com.atguigu.wechat.mapper.MenuMapper;
@@ -11,9 +12,11 @@ import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +35,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Autowired
     private WxMpService wxMpService;
 
+    @Resource
+    public WechatConfig wechatConfig;
     //获取全部菜单
     @Override
     public List<MenuVo> findMenuInfo() {
@@ -85,7 +90,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
             one.put("name", oneMenuVo.getName());
             if(CollectionUtils.isEmpty(oneMenuVo.getChildren())) {
                 one.put("type", oneMenuVo.getType());
-                one.put("url", "http://afraid2.5gzvip.91tunnel.com/#"+oneMenuVo.getUrl());
+                one.put("url", wechatConfig.url+"#"+oneMenuVo.getUrl());
             } else {
                 JSONArray subButton = new JSONArray();
                 for(MenuVo twoMenuVo : oneMenuVo.getChildren()) {
@@ -94,7 +99,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
                     if(twoMenuVo.getType().equals("view")) {
                         view.put("name", twoMenuVo.getName());
                         //H5页面地址
-                        view.put("url", "http://afraid2.5gzvip.91tunnel.com#"+twoMenuVo.getUrl());
+                        view.put("url", wechatConfig.url+twoMenuVo.getUrl());
                     } else {
                         view.put("name", twoMenuVo.getName());
                         view.put("key", twoMenuVo.getMeunKey());

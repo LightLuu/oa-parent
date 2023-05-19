@@ -7,6 +7,7 @@ import com.atguigu.model.process.Process;
 import com.atguigu.model.process.ProcessTemplate;
 import com.atguigu.model.process.Question;
 import com.atguigu.model.system.SysUser;
+import com.atguigu.common.oss.WechatConfig;
 import com.atguigu.model.wechat.Menu;
 import com.atguigu.process.service.MessageService;
 import com.atguigu.process.service.OaProcessService;
@@ -17,6 +18,7 @@ import com.atguigu.vo.wechat.MenuVo;
 import com.atguigu.wechat.service.MenuService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import jdk.nashorn.internal.ir.annotations.Reference;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -28,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
@@ -51,6 +54,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Autowired
     private QuestionService questionService;
+
+    @Resource
+    private WechatConfig wachatConfig;
     //推送待审批人员
     @Override
     public void pushPendingMessage(Long processId, Long userId, String taskId) {
@@ -76,7 +82,7 @@ public class MessageServiceImpl implements MessageService {
                 //创建模板信息的id值
                 .templateId("sABejZxhSHvS9NWtiNu765Y1BEwqRdzv61d2tCWbSt8")
                 //点击消息，跳转的地址
-                .url("http://afraid2.5gzvip.91tunnel.com/#/show/" + processId + "/" + taskId)
+                .url(wachatConfig.url+"#/show/" + processId + "/" + taskId)
                 .build();
 
         JSONObject jsonObject = JSON.parseObject(process.getFormValues());
@@ -127,7 +133,7 @@ public class MessageServiceImpl implements MessageService {
                 //创建模板信息的id值
                 .templateId("sz5Ne6RRaif0fTRxrOasu-CaUj-nqTtPgIvcIEVJbIs")
                 //点击消息，跳转的地址
-                .url("http://afraid2.5gzvip.91tunnel.com/#/form/" + processId)
+                .url(wachatConfig.url+"#/form/" + processId)
                 .build();
 
 //        JSONObject jsonObject = JSON.parseObject(process.());
@@ -169,7 +175,7 @@ public class MessageServiceImpl implements MessageService {
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
                 .toUser(openid)//要推送的用户openid
                 .templateId("sABejZxhSHvS9NWtiNu765Y1BEwqRdzv61d2tCWbSt8")//模板id
-                .url("ttp://afraid2.5gzvip.91tunnel.com/#/show/"+processId+"/0")//点击模板消息要访问的网址
+                .url(wachatConfig.ttp+"#/show/"+processId+"/0")//点击模板消息要访问的网址
                 .build();
         JSONObject jsonObject = JSON.parseObject(process.getFormValues());
         JSONObject formShowData = jsonObject.getJSONObject("formShowData");
